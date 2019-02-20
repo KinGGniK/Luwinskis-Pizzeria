@@ -1,0 +1,196 @@
+﻿@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://use.fontawesome.com/releases/v5.1.1/css/all.css');
+
+img {
+    max-width: 100%;
+}
+
+body {
+    line-height: 1.5em !important;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    color: #000000;
+}
+
+#mcolor {
+    color: #E51300 !important;
+}
+
+.form-error {
+    color: #FF2400;
+}
+
+.backcolor {
+    background-color: #fff;
+}
+
+.background {
+    background: url(Content/PizzaBackground.jpg) no-repeat center fixed;
+    background-size: cover;
+}
+
+.background > div.backcolor {
+        opacity: .9;
+}
+
+a.logo-position h3 {
+    margin: 0;
+    padding-top: .2em;
+    color: #E51300 !important;
+}
+
+span {
+    color: #E51300;
+    font-size: 1.5rem !important;
+}
+
+.flex-toppings label span {
+    font-size: 1.2rem !important;
+}
+
+.backcolor #title {
+    padding: 3%;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.flex-toppings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    width: 75%;
+    margin: auto;
+}
+
+    .flex-toppings div {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+#delivery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.container > div.flex > div {
+    flex-grow: 1;
+    padding: 1em;
+}
+
+.container.flex {
+    justify-content: center;
+}
+
+    .container.flex > h4 {
+        padding-right: 5%;
+    }
+
+    .container.flex > input {
+        padding-top: 2%;
+        width: 10%;
+    }
+
+/*Hides the arrows for the number inputs*/
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type='number'] {
+    text-align: center;
+}
+/*Input Formatting & Styling*/
+[type="radio"]:checked + span:after, [type="radio"].with-gap:checked + span:after, #icinst {
+    background-color: #E51300;
+}
+
+[type="radio"]:checked + span:after, [type="radio"].with-gap:checked + span:before, [type="radio"].with-gap:checked + span:after {
+    border: 2px solid #E51300;
+}
+
+[type="checkbox"].filled-in:checked + span:not(.lever):after {
+    border: #E51300;
+    background-color: #e51300;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]) {
+    border-bottom: 1px solid #E51300;
+    box-shadow: 0 1px 0 0 #E51300;
+}
+
+/*Footer Content & Styling*/
+.row.flex {
+    font-size: 1.5em;
+}
+
+    .row.flex h5 {
+        color: #E51300 !important;
+        font-size: 1.8em;
+    }
+
+.footer-logo {
+    display: none;
+}
+
+.flex-footer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+    .flex-footer li {
+        display: flex;
+        align-items: baseline;
+    }
+
+        .flex-footer li p {
+            padding: 5%;
+            margin: 0;
+            width: 70%;
+            color: #000;
+        }
+
+.btn-social {
+    background-color: #E51300;
+    box-shadow: unset;
+    -webkit-box-shadow: unset;
+    margin-bottom: 5%;
+}
+
+.btn-floating:hover {
+    background-color: #E51300;
+    opacity: .7;
+}
+
+.page-footer .container {
+    width: 95%;
+}
+
+    .page-footer .container p {
+        color: #000;
+    }
+
+.page-footer .footer-copyright {
+    background-color: #E51300;
+}
+
+#btmspacer {
+    margin-bottom: 5%;
+}
+
+.button-contain {
+    display: flex;
+    justify-content: center;
+}
+
+    .button-contain div {
+        padding: 1em;
+    }

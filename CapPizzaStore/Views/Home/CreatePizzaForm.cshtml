@@ -1,0 +1,201 @@
+﻿@model CapPizzaStore.Models.InfoViewModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Luwinski's Pizzeria</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="~/PizzaStyle.css?v=1" rel="stylesheet" />
+
+</head>
+
+<body class="background">
+
+    @RenderPage("_Header.cshtml")
+
+    <div class="backcolor">
+        <div id="title" class="center">
+            <h1>Luwinski's Pizzeria</h1>
+
+            <h3>Craft your own personal pizza</h3><br />
+        </div>
+
+        <div class="form">
+            <form action="CreatePizza" method="post">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div>
+                    <p class="center">@TempData["Size"]</p>
+                    <h4 class="center">Please Select a Size</h4>
+                    <div class="flex">
+                        <p>
+                            <label>
+                                <input class="with-gap" value="Small" name="size" type="radio" />
+                                <span>Small - $7.45</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" value="Medium" name="size" type="radio" />
+                                <span>Medium - $10.45</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input class="with-gap" value="Large" name="size" type="radio" />
+                                <span>Large - $13.45</span>
+                            </label>
+                        </p>
+                    </div>
+                </div>
+
+                <br /><br />
+                <h4 class="center">Pick Some Toppings!</h4><br />
+                <div class="flex-toppings">
+                    <div>
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" name="bacon" value="true" />
+                                <span>Bacon - $0.35</span>
+
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" name="bbq" value="true" />
+                                <span>BBQ - $0.25</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" name="pepperoni" value="true" />
+                                <span>Pepperoni - $0.25</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" name="shrimp" value="true" />
+                                <span>Shrimp - $0.75</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" name="pineapple" value="true" />
+                                <span>Pineapple - $0.30</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" name="cheese" value="true" />
+                                <span>Extra Cheese - $0.25</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" name="mushroom" value="true" />
+                                <span>Mushroom - $0.50</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" name="onion" value="true" />
+                                <span>Onion - $0.35</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" name="peppers" value="true" />
+                                <span>Bell Peppers - $0.40</span>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in" name="sausage" value="true" />
+                                <span>Sausage - $0.35</span>
+                            </label>
+                        </p>
+                    </div>
+                </div><br>
+
+                <div class="container">
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "form-error" })
+                    <h4>Please Enter Your Name:</h4>
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @maxlength = 45, @placeholder = "Full Name" } })
+                </div>
+
+                <div id="delivery" class="container">
+                    <h4>
+                        Deliver?
+                    </h4>
+                    <h6>Delivery in 30 minutes or it's free!</h6>
+                    <p>
+                        <label>
+                            <input type="checkbox" class="filled-in" name="deliver" value="true" />
+                            <span>+$1.00 delivery fee</span>
+                        </label>
+                    </p>
+                </div>
+
+                <div class="container">
+                    <div class="flex">
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "form-error" })
+                            <h4>Address:</h4>
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @maxlength = 45, @placeholder = "Address" } })
+                        </div>
+                        <div>
+                            @Html.ValidationMessageFor(model => model.City, "", new { @class = "form-error" })
+                            <h4>City:</h4>
+                            @Html.EditorFor(model => model.City, new { htmlAttributes = new { @maxlength = 25, @placeholder = "City" } })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="flex">
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Zip, "", new { @class = "form-error" })
+                            <h4>Zip Code: </h4>
+                            @Html.EditorFor(model => model.Zip, new { htmlAttributes = new { @onkeypress = "return isNumber(event)", @maxlength = 5, @placeholder = "Zip Code" } })
+                        </div>
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "form-error" })
+                            <h4>Phone: </h4>
+                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @maxlength = 10, @onkeypress = "return isNumber(event)", @placeholder = "Phone Number" } })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container flex">
+                    <h4>Quantity:</h4>
+                    <input type="number" value="1" min="1" max="10" name="amt" />
+                    <p>@TempData["Amt"]</p>
+                </div><br>
+
+                <div class="button-contain">
+                    <div class="#">
+                        <button class="btn waves-effect waves-light" id="icinst" type="reset" name="reset">Reset</button>
+                    </div>
+                    <div class="#">
+                        <button class="btn waves-effect waves-light" id="icinst" type="submit" name="action">Submit<i class="material-icons right">send</i></button>
+                    </div>
+                </div><br />
+            </form>
+        </div>
+    </div>
+
+    @RenderPage("_Footer.cshtml")
+
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="~/jscript.js?v=1" type="text/javascript"></script>
+<script src="~/init.js?v=1" type="text/javascript"></script>

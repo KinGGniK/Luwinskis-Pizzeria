@@ -1,0 +1,62 @@
+﻿@model CapPizzaStore.Models.CartViewModel
+
+@{
+    Layout = null;
+    var items = Model.CartItems;
+    double ptotal = 0.0;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Order Confirmation</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="~/PizzaStyle.css?v=1" rel="stylesheet" />
+
+</head>
+
+<body class="background">
+
+    @RenderPage("_Header.cshtml")
+
+
+    <div class="center backcolor">
+        <br />
+        <h1>Your Order has been Placed!</h1>
+
+        <h4>You ordered:</h4>
+        @foreach (var c in items)
+        {
+            ptotal = Math.Truncate(c.Pizza.GetCost() * 100) / 100;
+
+            <h6>@c.Pizza.GetDescription()</h6>
+            <h6>@ptotal.ToString("F")</h6>
+            <br />
+        }
+
+        @if ((bool)Model.InfoView.Delivery)
+        {
+            <h5 class="center">Your order will be delivered at @Model.DeliveryTime to @Model.InfoView.Address or it's free!</h5>
+        }
+        else
+        {
+            <h5 class="center">You can pick up your order at @Model.DeliveryTime.</h5>
+        }
+            <br />
+            <a class="btn-large waves-effect waves-light red" id="ebcolor" href="@Url.Action("CreatePizzaForm", "Home")">Place Another Order</a><br />
+            <br />
+
+        </div>
+    @RenderPage("_Footer.cshtml")
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="~/jscript.js?v=1" type="text/javascript"></script>
+<script src="~/init.js?v=1" type="text/javascript"></script>

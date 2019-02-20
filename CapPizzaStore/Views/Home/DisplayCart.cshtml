@@ -1,0 +1,69 @@
+﻿@using CapPizzaStore.Models;
+@model CapPizzaStore.Models.CartViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopping Cart</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="~/PizzaStyle.css?v=1" rel="stylesheet" />
+
+</head>
+
+<body class="background">
+
+    @RenderPage("_Header.cshtml")
+
+
+    <div class="center backcolor">
+        <div>
+            <br /><h2 class="center">Your Pizzas</h2>
+        </div>
+        <table class="mtable centered highlight">
+            <thead class="ehead">
+                <tr>
+                    <th>Pizza</th>
+                    <th>Quantity</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+
+            <p>@TempData["Removed"]</p>
+            @foreach (CartItem c in (List<CartItem>)Session["cart"])
+            {
+                <tr class="rowedit">
+                    <td>@c.Pizza.GetDescription()</td>
+                    <td>@c.Quant</td>
+                    <td><a class="btn-floating btn-large waves-effect waves-light red" id="ebcolor" href="Remove?id=@c.ID"><i class="material-icons">delete</i></a></td>
+                </tr>
+            }
+            <tbody>
+        </table>
+        <br />
+        <h4>Your total amount is $@Model.Total</h4>
+
+        <br />
+        <div class="flex">
+            <a class="btn-large waves-effect waves-light red" id="ebcolor" href="@Url.Action("AddMorePizzaForm", "Home")">Get Some More Pizzas</a><br />
+            <a class="btn-large waves-effect waves-light red" id="ebcolor" href="@Url.Action("Checkout", "Home")">Checkout</a>
+        </div>
+        <br /><br />
+    </div>
+
+
+    @RenderPage("_Footer.cshtml")
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="~/jscript.js?v=1" type="text/javascript"></script>
+<script src="~/init.js?v=1" type="text/javascript"></script>
